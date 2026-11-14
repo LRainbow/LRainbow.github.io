@@ -1,0 +1,644 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>金融投资学习导航 | 我的个人网站</title>
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "PingFang SC",
+                   "Microsoft YaHei", sans-serif;
+      line-height: 1.7;
+      color: #24292f;
+      background-color: #f6f8fa;
+    }
+
+    /* 导航栏 */
+    nav {
+      background-color: #24292f;
+      padding: 1rem 2rem;
+      position: sticky;
+      top: 0;
+      z-index: 100;
+      box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+    }
+
+    nav a {
+      color: #ffffff;
+      text-decoration: none;
+      margin-right: 1.5rem;
+      font-weight: 500;
+      transition: color 0.2s;
+    }
+
+    nav a:hover {
+      color: #58a6ff;
+    }
+
+    /* 主内容区 */
+    main {
+      max-width: 1200px;
+      margin: 2rem auto;
+      padding: 0 2rem;
+    }
+
+    /* Hero区域 */
+    .hero {
+      text-align: center;
+      padding: 4rem 1rem;
+      margin-bottom: 3rem;
+      background: linear-gradient(135deg, #24292f 0%, #0969da 100%);
+      color: white;
+      border-radius: 12px;
+    }
+
+    .hero h1 {
+      font-size: 2.8rem;
+      margin-bottom: 1rem;
+      font-weight: 700;
+    }
+
+    .hero p {
+      font-size: 1.2rem;
+      max-width: 800px;
+      margin: 0 auto;
+      opacity: 0.9;
+    }
+
+    /* 章节标题 */
+    .section-title {
+      font-size: 1.8rem;
+      margin: 3rem 0 1.5rem;
+      padding-bottom: 0.5rem;
+      border-bottom: 2px solid #d0d7de;
+      color: #0969da;
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+    }
+
+    /* 卡片布局 */
+    .card-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+      gap: 1.5rem;
+      margin-bottom: 3rem;
+    }
+
+    .card {
+      background: white;
+      border-radius: 8px;
+      padding: 1.5rem;
+      box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
+      transition: transform 0.3s ease, box-shadow 0.3s ease;
+      display: flex;
+      flex-direction: column;
+    }
+
+    .card:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 5px 15px rgba(0, 0, 0, 0.12);
+    }
+
+    .card-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-start;
+      margin-bottom: 1rem;
+    }
+
+    .card-title {
+      font-size: 1.2rem;
+      font-weight: 600;
+      color: #24292f;
+    }
+
+    .card-badge {
+      background-color: #ddf4ff;
+      color: #0969da;
+      padding: 0.2rem 0.6rem;
+      border-radius: 999px;
+      font-size: 0.8rem;
+      white-space: nowrap;
+    }
+
+    .card-description {
+      color: #57606a;
+      font-size: 0.95rem;
+      margin-bottom: 1rem;
+      flex-grow: 1;
+    }
+
+    .card-meta {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-top: auto;
+      padding-top: 1rem;
+      border-top: 1px solid #d0d7de;
+      font-size: 0.85rem;
+      color: #57606a;
+    }
+
+    .card-link {
+      display: inline-block;
+      background-color: #0969da;
+      color: white;
+      padding: 0.4rem 1rem;
+      border-radius: 6px;
+      text-decoration: none;
+      font-size: 0.9rem;
+      transition: background-color 0.2s;
+    }
+
+    .card-link:hover {
+      background-color: #0860ca;
+    }
+
+    .language-tag {
+      background-color: #f6f8fa;
+      padding: 0.1rem 0.4rem;
+      border-radius: 4px;
+      font-size: 0.8rem;
+    }
+
+    /* 行情速览区 */
+    .market-snapshot {
+      background: white;
+      border-radius: 8px;
+      padding: 1.5rem;
+      margin-bottom: 3rem;
+      box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
+    }
+
+    .market-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 1.5rem;
+      padding-bottom: 1rem;
+      border-bottom: 1px solid #d0d7de;
+    }
+
+    .market-title {
+      font-size: 1.5rem;
+      font-weight: 600;
+      color: #24292f;
+    }
+
+    .market-index-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+      gap: 1rem;
+      margin-bottom: 2rem;
+    }
+
+    .index-card {
+      text-align: center;
+      padding: 1rem;
+      border-radius: 8px;
+      background: #f8f9fa;
+      border: 1px solid #eaeef2;
+    }
+
+    .index-name {
+      font-weight: 600;
+      color: #57606a;
+      margin-bottom: 0.5rem;
+    }
+
+    .index-value {
+      font-size: 1.5rem;
+      font-weight: 700;
+      color: #24292f;
+    }
+
+    .index-change {
+      font-weight: 600;
+      margin-top: 0.3rem;
+    }
+
+    .positive {
+      color: #1a7f37;
+    }
+
+    .negative {
+      color: #cf222e;
+    }
+
+    .market-links {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+      gap: 1rem;
+    }
+
+    .market-link-item {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      padding: 1rem;
+      border-radius: 8px;
+      background: #f6f8fa;
+      border: 1px solid #d0d7de;
+      transition: all 0.2s;
+    }
+
+    .market-link-item:hover {
+      background: #ddf4ff;
+      border-color: #0969da;
+    }
+
+    .market-link-icon {
+      font-size: 1.5rem;
+      margin-bottom: 0.5rem;
+    }
+
+    .market-link-name {
+      font-weight: 600;
+      margin-bottom: 0.3rem;
+      color: #24292f;
+    }
+
+    .market-link-desc {
+      font-size: 0.85rem;
+      color: #57606a;
+      text-align: center;
+    }
+
+    /* 使用建议 */
+    .tips {
+      background-color: #f8f9fa;
+      border-left: 4px solid #0969da;
+      padding: 1.5rem;
+      margin: 3rem 0;
+      border-radius: 0 8px 8px 0;
+    }
+
+    .tips h3 {
+      color: #0969da;
+      margin-bottom: 1rem;
+      font-size: 1.2rem;
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+    }
+
+    .tips ul {
+      list-style-position: inside;
+      padding-left: 1rem;
+    }
+
+    .tips li {
+      margin-bottom: 0.5rem;
+    }
+
+    /* 页脚 */
+    footer {
+      text-align: center;
+      padding: 2rem;
+      color: #57606a;
+      font-size: 0.9rem;
+      border-top: 1px solid #d0d7de;
+      margin-top: 3rem;
+    }
+
+    /* 响应式调整 */
+    @media (max-width: 768px) {
+      main {
+        padding: 0 1rem;
+      }
+      
+      .hero h1 {
+        font-size: 2rem;
+      }
+      
+      .card-grid {
+        grid-template-columns: 1fr;
+      }
+      
+      nav {
+        padding: 1rem;
+        overflow-x: auto;
+      }
+      
+      .section-title {
+        font-size: 1.5rem;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <nav>
+    <a href="index.html">首页</a>
+    <a href="about.html">关于我</a>
+    <a href="projects.html">我的项目</a>
+    <a href="ailearning.html">AI学习</a>
+    <a href="investment.html">金融投资</a>
+  </nav>
+
+  <main>
+    <div class="hero">
+      <h1>💰 金融投资学习导航</h1>
+      <p>一站式金融学习与投资信息平台，涵盖经济学知识、财经新闻、实时行情与基金动态，助你成为更明智的投资者。</p>
+    </div>
+
+    <!-- 市场行情速览 -->
+    <section>
+      <h2 class="section-title">📈 市场行情速览</h2>
+      <div class="market-snapshot">
+        <div class="market-header">
+          <div class="market-title">A股主要指数（实时）</div>
+          <div>更新时间: <span id="update-time"></span></div>
+        </div>
+        
+        <div class="market-index-grid">
+          <div class="index-card">
+            <div class="index-name">上证指数</div>
+            <div class="index-value">3,245.68</div>
+            <div class="index-change positive">+12.34 (+0.38%)</div>
+          </div>
+          <div class="index-card">
+            <div class="index-name">深证成指</div>
+            <div class="index-value">10,876.54</div>
+            <div class="index-change positive">+45.67 (+0.42%)</div>
+          </div>
+          <div class="index-card">
+            <div class="index-name">创业板指</div>
+            <div class="index-value">2,134.90</div>
+            <div class="index-change negative">-8.90 (-0.42%)</div>
+          </div>
+          <div class="index-card">
+            <div class="index-name">科创50</div>
+            <div class="index-value">956.78</div>
+            <div class="index-change positive">+5.43 (+0.57%)</div>
+          </div>
+        </div>
+        
+        <h3 style="margin-bottom: 1rem; color: #24292f;">🛠️ 行情查询工具</h3>
+        <div class="market-links">
+          <a href="https://quote.eastmoney.com/" target="_blank" class="market-link-item">
+            <div class="market-link-icon">📊</div>
+            <div class="market-link-name">东方财富网</div>
+            <div class="market-link-desc">A股行情与市场数据</div>
+          </a>
+          <a href="https://finance.sina.com.cn/" target="_blank" class="market-link-item">
+            <div class="market-link-icon">📰</div>
+            <div class="market-link-name">新浪财经</div>
+            <div class="market-link-desc">多市场报价与财经资讯</div>
+          </a>
+          <a href="https://www.10jqka.com.cn/" target="_blank" class="market-link-item">
+            <div class="market-link-icon">📈</div>
+            <div class="market-link-name">同花顺</div>
+            <div class="market-link-desc">个股、板块与自选股查看</div>
+          </a>
+          <a href="https://xueqiu.com/" target="_blank" class="market-link-item">
+            <div class="market-link-icon">💬</div>
+            <div class="market-link-name">雪球</div>
+            <div class="market-link-desc">行情与投资者讨论并列浏览</div>
+          </a>
+          <a href="https://www.tradingview.com/" target="_blank" class="market-link-item">
+            <div class="market-link-icon">🌐</div>
+            <div class="market-link-name">TradingView</div>
+            <div class="market-link-desc">全球图表与技术指标</div>
+          </a>
+          <a href="https://cn.investing.com/" target="_blank" class="market-link-item">
+            <div class="market-link-icon">🌍</div>
+            <div class="market-link-name">Investing.com</div>
+            <div class="market-link-desc">国际市场与经济日历</div>
+          </a>
+        </div>
+      </div>
+    </section>
+
+    <!-- 财经新闻获取 -->
+    <section>
+      <h2 class="section-title">📰 财经新闻获取</h2>
+      <div class="card-grid">
+        <div class="card">
+          <div class="card-header">
+            <div class="card-title">财联社</div>
+            <div class="card-badge">实时快讯</div>
+          </div>
+          <div class="card-description">
+            提供快速、准确的财经新闻、股市热点、公司动态等实时资讯，是许多投资者获取盘中消息的首选。
+          </div>
+          <div class="card-meta">
+            <span class="language-tag">中文</span>
+            <a href="https://www.cls.cn/" target="_blank" class="card-link">访问网站</a>
+          </div>
+        </div>
+
+        <div class="card">
+          <div class="card-header">
+            <div class="card-title">第一财经</div>
+            <div class="card-badge">权威媒体</div>
+          </div>
+          <div class="card-description">
+            中国深具影响力的财经全媒体集团，提供深度财经新闻、市场分析和独家报道，内容覆盖广泛<span data-allow-html class="search-source-placeholder" data-keys="turn0search0,turn0search6" data-label="www.cnpp.cn +1"><span class="search-source-item-label"><a data-allow-html href="https://www.cnpp.cn/focus/3554665.html" target="_blank" rel="noopener noreferrer">www.cnpp.cn</a></span><span class="source-item-num-count"> +1</span></span>。
+          </div>
+          <div class="card-meta">
+            <span class="language-tag">中文</span>
+            <a href="https://www.yicai.com/" target="_blank" class="card-link">访问网站</a>
+          </div>
+        </div>
+
+        <div class="card">
+          <div class="card-header">
+            <div class="card-title">财新传媒</div>
+            <div class="card-badge">深度调查</div>
+          </div>
+          <div class="card-description">
+            以客观、专业的视角提供高品质的原创财经新闻和深度调查报道，在金融界享有盛誉<span data-allow-html class="search-source-placeholder" data-keys="turn0search0,turn0search6" data-label="www.cnpp.cn +1"><span class="search-source-item-label"><a data-allow-html href="https://www.cnpp.cn/focus/3554665.html" target="_blank" rel="noopener noreferrer">www.cnpp.cn</a></span><span class="source-item-num-count"> +1</span></span>。
+          </div>
+          <div class="card-meta">
+            <span class="language-tag">中文</span>
+            <a href="https://www.caixin.com/" target="_blank" class="card-link">访问网站</a>
+          </div>
+        </div>
+
+        <div class="card">
+          <div class="card-header">
+            <div class="card-title">经济观察网</div>
+            <div class="card-badge">理性建设</div>
+          </div>
+          <div class="card-description">
+            以理性、建设性为基本价值观，服务于中国主流商业人群，提供及时的财经新闻和独到的财经评论<span data-allow-html class="search-source-placeholder" data-keys="turn0search0,turn0search9" data-label="www.cnpp.cn +1"><span class="search-source-item-label"><a data-allow-html href="https://www.cnpp.cn/focus/3554665.html" target="_blank" rel="noopener noreferrer">www.cnpp.cn</a></span><span class="source-item-num-count"> +1</span></span>。
+          </div>
+          <div class="card-meta">
+            <span class="language-tag">中文</span>
+            <a href="http://www.eeo.com.cn/" target="_blank" class="card-link">访问网站</a>
+          </div>
+        </div>
+
+        <div class="card">
+          <div class="card-header">
+            <div class="card-title">金十数据</div>
+            <div class="card-badge">宏观数据</div>
+          </div>
+          <div class="card-description">
+            专注于全球财经资讯和数据服务，特别是宏观经济数据、央行动态和外汇市场消息，是关注宏观趋势的好帮手<span data-allow-html class="search-source-placeholder" data-keys="turn0search3,turn0search4" data-label="sina.cn +1"><span class="search-source-item-label"><a data-allow-html href="https://sina.cn/news/detail/5359249220962936.html" target="_blank" rel="noopener noreferrer">sina.cn</a></span><span class="source-item-num-count"> +1</span></span>。
+          </div>
+          <div class="card-meta">
+            <span class="language-tag">中文</span>
+            <a href="https://www.jin10.com/" target="_blank" class="card-link">访问网站</a>
+          </div>
+        </div>
+
+        <div class="card">
+          <div class="card-header">
+            <div class="card-title">华尔街见闻</div>
+            <div class="card-badge">全球视野</div>
+          </div>
+          <div class="card-description">
+            提供全球金融市场资讯、深度分析和市场评论，帮助投资者理解全球宏观经济和市场动态。
+          </div>
+          <div class="card-meta">
+            <span class="language-tag">中文</span>
+            <a href="https://wallstreetcn.com/" target="_blank" class="card-link">访问网站</a>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- 金融与经济学知识学习 -->
+    <section>
+      <h2 class="section-title">🎓 金融与经济学知识学习</h2>
+      <div class="card-grid">
+        <div class="card">
+          <div class="card-header">
+            <div class="card-title">中国大学MOOC</div>
+            <div class="card-badge">系统学习</div>
+          </div>
+          <div class="card-description">
+            提供多所高校的《金融学》、《经济学原理》等系统课程，如湖南大学《金融学》、南京审计大学《金融学》等，适合零基础入门<span data-allow-html class="search-source-placeholder" data-keys="turn0search5,turn0search8" data-label="higher.smartedu.cn +1"><span class="search-source-item-label"><a data-allow-html href="https://higher.smartedu.cn/course/697829dd95df98bb279283df" target="_blank" rel="noopener noreferrer">higher.smartedu.cn</a></span><span class="source-item-num-count"> +1</span></span>。
+          </div>
+          <div class="card-meta">
+            <span class="language-tag">中文</span>
+            <a href="https://www.icourse163.org/" target="_blank" class="card-link">访问网站</a>
+          </div>
+        </div>
+
+        <div class="card">
+          <div class="card-header">
+            <div class="card-title">学堂在线</div>
+            <div class="card-badge">名校课程</div>
+          </div>
+          <div class="card-description">
+            提供包括《金融学：微观运行与宏观均衡》在内的多门金融课程，由华南农业大学等高校开设，理论体系完整<span data-allow-html class="search-source-placeholder" data-keys="turn0search11" data-label="www.chinaooc.com.cn"><span class="search-source-item-label"><a data-allow-html href="https://www.chinaooc.com.cn/course/6786ed65225d72705e5dc603" target="_blank" rel="noopener noreferrer">www.chinaooc.com.cn</a></span><span class="source-item-num-count"></span></span>。
+          </div>
+          <div class="card-meta">
+            <span class="language-tag">中文</span>
+            <a href="https://www.xuetangx.com/" target="_blank" class="card-link">访问网站</a>
+          </div>
+        </div>
+
+        <div class="card">
+          <div class="card-header">
+            <div class="card-title">圣才学习网</div>
+            <div class="card-badge">考试辅导</div>
+          </div>
+          <div class="card-description">
+            为证券、基金、银行等金融类资格考试提供辅导视频、题库和教辅图书，也适合想系统学习金融知识的人<span data-allow-html class="search-source-placeholder" data-keys="turn0search14" data-label="baike.baidu.com"><span class="search-source-item-label"><a data-allow-html href="https://baike.baidu.com/view/3113711.html?wtp=tt" target="_blank" rel="noopener noreferrer">baike.baidu.com</a></span><span class="source-item-num-count"></span></span>。
+          </div>
+          <div class="card-meta">
+            <span class="language-tag">中文</span>
+            <a href="https://www.100xuexi.com/" target="_blank" class="card-link">访问网站</a>
+          </div>
+        </div>
+
+        <div class="card">
+          <div class="card-header">
+            <div class="card-title">可汗学院</div>
+            <div class="card-badge">免费入门</div>
+          </div>
+          <div class="card-description">
+            提供免费的经济学和金融学基础课程，内容生动易懂，适合完全零基础的小白构建基本概念。
+          </div>
+          <div class="card-meta">
+            <span class="language-tag">英文</span>
+            <a href="https://www.khanacademy.org/economics-finance-domain" target="_blank" class="card-link">访问网站</a>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- 基金情况查询 -->
+    <section>
+      <h2 class="section-title">📊 基金情况查询</h2>
+      <div class="card-grid">
+        <div class="card">
+          <div class="card-header">
+            <div class="card-title">东方财富基金</div>
+            <div class="card-badge">数据全面</div>
+          </div>
+          <div class="card-description">
+            提供全面的基金净值、排名、走势和公告查询，覆盖公募基金、私募基金等各类产品，数据更新及时。
+          </div>
+          <div class="card-meta">
+            <span class="language-tag">中文</span>
+            <a href="https://fund.eastmoney.com/" target="_blank" class="card-link">访问网站</a>
+          </div>
+        </div>
+
+        <div class="card">
+          <div class="card-header">
+            <div class="card-title">晨星网</div>
+            <div class="card-badge">专业评级</div>
+          </div>
+          <div class="card-description">
+            提供专业的基金分析和评级服务，帮助投资者评估基金的风险和收益，适合进行基金筛选和比较。
+          </div>
+          <div class="card-meta">
+            <span class="language-tag">中文</span>
+            <a href="https://cn.morningstar.com/" target="_blank" class="card-link">访问网站</a>
+          </div>
+        </div>
+
+        <div class="card">
+          <div class="card-header">
+            <div class="card-title">雪球基金</div>
+            <div class="card-badge">社区互动</div>
+          </div>
+          <div class="card-description">
+            结合了基金数据查询和投资者社区讨论，可以查看基金净值、持仓，并参考其他投资者的观点和讨论。
+          </div>
+          <div class="card-meta">
+            <span class="language-tag">中文</span>
+            <a href="https://xueqiu.com/fund" target="_blank" class="card-link">访问网站</a>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- 使用建议 -->
+    <div class="tips">
+      <h3>💡 如何高效使用本导航？</h3>
+      <ul>
+        <li><strong>建立知识框架</strong>：如果你是初学者，先从“金融与经济学知识学习”板块开始，系统学习基础知识<span data-allow-html class="search-source-placeholder" data-keys="turn0search2,turn0search5" data-label="higher.smartedu.cn +1"><span class="search-source-item-label"><a data-allow-html href="https://higher.smartedu.cn/course/69a3652095df98bb2773af58" target="_blank" rel="noopener noreferrer">higher.smartedu.cn</a></span><span class="source-item-num-count"> +1</span></span>。</li>
+        <li><strong>培养新闻敏感度</strong>：每天选择1-2个“财经新闻获取”板块的网站浏览，养成关注财经时事的习惯<span data-allow-html class="search-source-placeholder" data-keys="turn0search7" data-label="www.kjks.net"><span class="search-source-item-label"><a data-allow-html href="https://www.kjks.net/cszx/cj/114142.html" target="_blank" rel="noopener noreferrer">www.kjks.net</a></span><span class="source-item-num-count"></span></span>。</li>
+        <li><strong>结合实践</strong>：在“市场行情速览”和“基金情况查询”板块提供的平台上，尝试模拟或小额投资，将理论知识应用于实践。</li>
+        <li><strong>交叉验证信息</strong>：对于重要的财经新闻或数据，最好在多个来源之间进行交叉验证，避免依赖单一信息源。</li>
+        <li><strong>保持耐心与纪律</strong>：投资是长跑，持续学习并保持理性，避免被短期市场波动情绪化。</li>
+      </ul>
+    </div>
+  </main>
+
+  <footer>
+    <p>持续更新中 · 最后更新: <span id="last-updated"></span></p>
+    <p>© 2026 你的名字 · 收集整理 | 投资有风险，本页信息仅供参考，不构成任何投资建议</p>
+  </footer>
+
+  <script>
+    // 设置最后更新时间
+    document.getElementById('last-updated').textContent = new Date().toLocaleDateString('zh-CN');
+    document.getElementById('update-time').textContent = new Date().toLocaleTimeString('zh-CN');
+  </script>
+</body>
+</html>
