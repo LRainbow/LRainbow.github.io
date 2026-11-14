@@ -1,0 +1,633 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>AI学习资源导航 | 我的个人网站</title>
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "PingFang SC",
+                   "Microsoft YaHei", sans-serif;
+      line-height: 1.7;
+      color: #24292f;
+      background-color: #f6f8fa;
+    }
+
+    /* 导航栏 */
+    nav {
+      background-color: #24292f;
+      padding: 1rem 2rem;
+      position: sticky;
+      top: 0;
+      z-index: 100;
+    }
+
+    nav a {
+      color: #ffffff;
+      text-decoration: none;
+      margin-right: 1.5rem;
+      font-weight: 500;
+    }
+
+    nav a:hover {
+      color: #58a6ff;
+    }
+
+    /* 主内容区 */
+    main {
+      max-width: 1200px;
+      margin: 2rem auto;
+      padding: 2rem;
+    }
+
+    /* Hero区域 */
+    .hero {
+      text-align: center;
+      padding: 3rem 1rem;
+      margin-bottom: 3rem;
+      background: linear-gradient(135deg, #24292f 0%, #0969da 100%);
+      color: white;
+      border-radius: 12px;
+    }
+
+    .hero h1 {
+      font-size: 2.5rem;
+      margin-bottom: 1rem;
+    }
+
+    .hero p {
+      font-size: 1.2rem;
+      max-width: 800px;
+      margin: 0 auto;
+      opacity: 0.9;
+    }
+
+    /* 章节标题 */
+    .section-title {
+      font-size: 1.8rem;
+      margin: 2.5rem 0 1.5rem;
+      padding-bottom: 0.5rem;
+      border-bottom: 2px solid #d0d7de;
+      color: #0969da;
+    }
+
+    /* 卡片布局 */
+    .card-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+      gap: 1.5rem;
+      margin-bottom: 3rem;
+    }
+
+    .card {
+      background: white;
+      border-radius: 8px;
+      padding: 1.5rem;
+      box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
+      transition: transform 0.3s ease, box-shadow 0.3s ease;
+      display: flex;
+      flex-direction: column;
+    }
+
+    .card:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 5px 15px rgba(0, 0, 0, 0.12);
+    }
+
+    .card-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-start;
+      margin-bottom: 1rem;
+    }
+
+    .card-title {
+      font-size: 1.2rem;
+      font-weight: 600;
+      color: #24292f;
+    }
+
+    .card-badge {
+      background-color: #ddf4ff;
+      color: #0969da;
+      padding: 0.2rem 0.6rem;
+      border-radius: 999px;
+      font-size: 0.8rem;
+      white-space: nowrap;
+    }
+
+    .card-description {
+      color: #57606a;
+      font-size: 0.95rem;
+      margin-bottom: 1rem;
+      flex-grow: 1;
+    }
+
+    .card-meta {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-top: auto;
+      padding-top: 1rem;
+      border-top: 1px solid #d0d7de;
+      font-size: 0.85rem;
+      color: #57606a;
+    }
+
+    .card-link {
+      display: inline-block;
+      background-color: #0969da;
+      color: white;
+      padding: 0.4rem 1rem;
+      border-radius: 6px;
+      text-decoration: none;
+      font-size: 0.9rem;
+      transition: background-color 0.2s;
+    }
+
+    .card-link:hover {
+      background-color: #0860ca;
+    }
+
+    .language-tag {
+      background-color: #f6f8fa;
+      padding: 0.1rem 0.4rem;
+      border-radius: 4px;
+      font-size: 0.8rem;
+    }
+
+    /* 筛选器 */
+    .filter-container {
+      margin: 2rem 0;
+      text-align: center;
+    }
+
+    .filter-btn {
+      background: white;
+      border: 1px solid #d0d7de;
+      padding: 0.5rem 1rem;
+      margin: 0 0.3rem 0.5rem;
+      border-radius: 999px;
+      cursor: pointer;
+      transition: all 0.2s;
+      font-size: 0.9rem;
+    }
+
+    .filter-btn:hover {
+      border-color: #0969da;
+      color: #0969da;
+    }
+
+    .filter-btn.active {
+      background-color: #0969da;
+      color: white;
+      border-color: #0969da;
+    }
+
+    /* 使用建议 */
+    .tips {
+      background-color: #f8f9fa;
+      border-left: 4px solid #0969da;
+      padding: 1.5rem;
+      margin: 3rem 0;
+      border-radius: 0 8px 8px 0;
+    }
+
+    .tips h3 {
+      color: #0969da;
+      margin-bottom: 1rem;
+      font-size: 1.2rem;
+    }
+
+    .tips ul {
+      list-style-position: inside;
+      padding-left: 1rem;
+    }
+
+    .tips li {
+      margin-bottom: 0.5rem;
+    }
+
+    /* 页脚 */
+    footer {
+      text-align: center;
+      padding: 2rem;
+      color: #57606a;
+      font-size: 0.9rem;
+      border-top: 1px solid #d0d7de;
+      margin-top: 3rem;
+    }
+
+    /* 响应式调整 */
+    @media (max-width: 768px) {
+      main {
+        padding: 1rem;
+      }
+      
+      .hero h1 {
+        font-size: 2rem;
+      }
+      
+      .card-grid {
+        grid-template-columns: 1fr;
+      }
+      
+      nav {
+        padding: 1rem;
+        overflow-x: auto;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <nav>
+    <a href="index.html">首页</a>
+    <a href="about.html">关于我</a>
+    <a href="projects.html">我的项目</a>
+    <a href="ailearning.html">AI学习</a>
+  </nav>
+
+  <main>
+    <div class="hero">
+      <h1>🚀 AI学习资源导航</h1>
+      <p>精选全球优质人工智能学习平台，助你从入门到精通。无论你是初学者、开发者还是研究者，这里都有适合你的学习资源。</p>
+    </div>
+
+    <div class="filter-container">
+      <button class="filter-btn active" data-filter="all">全部</button>
+      <button class="filter-btn" data-filter="beginner">入门友好</button>
+      <button class="filter-btn" data-filter="free">免费资源</button>
+      <button class="filter-btn" data-filter="interactive">动手实践</button>
+      <button class="filter-btn" data-filter="chinese">中文资源</button>
+      <button class="filter-btn" data-filter="advanced">进阶/专业</button>
+    </div>
+
+    <!-- 入门通识 -->
+    <h2 class="section-title">🌱 入门通识</h2>
+    <div class="card-grid">
+      <div class="card" data-tags="beginner free chinese">
+        <div class="card-header">
+          <div class="card-title">Elements of AI</div>
+          <div class="card-badge">免费</div>
+        </div>
+        <div class="card-description">
+          赫尔辛基大学推出的免费AI通识课程，零基础友好，无需编程。通过互动练习理解AI基本概念和伦理影响。
+        </div>
+        <div class="card-meta">
+          <span class="language-tag">英文/多语言</span>
+          <a href="https://www.elementsofai.com/" target="_blank" class="card-link">访问网站</a>
+        </div>
+      </div>
+
+      <div class="card" data-tags="beginner free">
+        <div class="card-header">
+          <div class="card-title">Generative AI for Beginners</div>
+          <div class="card-badge">微软出品</div>
+        </div>
+        <div class="card-description">
+          微软推出的免费生成式AI课程，通过21节课程和大量图解讲解大语言模型(LLM)的底层逻辑和工作原理。
+        </div>
+        <div class="card-meta">
+          <span class="language-tag">中英文</span>
+          <a href="https://github.com/microsoft/generative-ai-for-beginners" target="_blank" class="card-link">访问网站</a>
+        </div>
+      </div>
+
+      <div class="card" data-tags="beginner free chinese">
+        <div class="card-header">
+          <div class="card-title">AI大学堂</div>
+          <div class="card-badge">科大讯飞</div>
+        </div>
+        <div class="card-description">
+          科大讯飞推出的在线AI学习平台，提供中英双语课程，覆盖AI通识、编程基础到深度学习框架的完整学习路径。
+        </div>
+        <div class="card-meta">
+          <span class="language-tag">中文/英文</span>
+          <a href="https://aistudy.iflytek.com/" target="_blank" class="card-link">访问网站</a>
+        </div>
+      </div>
+
+      <div class="card" data-tags="beginner free">
+        <div class="card-header">
+          <div class="card-title">Google AI Essentials</div>
+          <div class="card-badge">Google</div>
+        </div>
+        <div class="card-description">
+          Google推出的AI基础课程，旨在帮助各行业专业人士了解AI核心概念并提升AI素养，适合职场人士。
+        </div>
+        <div class="card-meta">
+          <span class="language-tag">英文</span>
+          <a href="https://grow.google/ai-essentials/" target="_blank" class="card-link">访问网站</a>
+        </div>
+      </div>
+    </div>
+
+    <!-- 系统课程 -->
+    <h2 class="section-title">📚 系统课程</h2>
+    <div class="card-grid">
+      <div class="card" data-tags="free advanced">
+        <div class="card-header">
+          <div class="card-title">DeepLearning.AI</div>
+          <div class="card-badge">吴恩达创立</div>
+        </div>
+        <div class="card-description">
+          由吴恩达创立的AI教育平台，提供从深度学习基础到生成式AI、智能体开发等130+课程和专项认证。
+        </div>
+        <div class="card-meta">
+          <span class="language-tag">英文</span>
+          <a href="https://www.deeplearning.ai/" target="_blank" class="card-link">访问网站</a>
+        </div>
+      </div>
+
+      <div class="card" data-tags="free interactive">
+        <div class="card-header">
+          <div class="card-title">fast.ai</div>
+          <div class="card-badge">实战导向</div>
+        </div>
+        <div class="card-description">
+          免费开源的深度学习课程，采用"自上而下"教学法，通过构建真实项目来学习深度学习，代码优先。
+        </div>
+        <div class="card-meta">
+          <span class="language-tag">英文</span>
+          <a href="https://www.fast.ai/" target="_blank" class="card-link">访问网站</a>
+        </div>
+      </div>
+
+      <div class="card" data-tags="free chinese">
+        <div class="card-header">
+          <div class="card-title">动手学深度学习</div>
+          <div class="card-badge">李沐团队</div>
+        </div>
+        <div class="card-description">
+          结合理论与实践的深度学习教材和课程，提供可运行的代码示例，支持PyTorch、TensorFlow等多个框架。
+        </div>
+        <div class="card-meta">
+          <span class="language-tag">中文/英文</span>
+          <a href="https://zh.d2l.ai/" target="_blank" class="card-link">访问网站</a>
+        </div>
+      </div>
+
+      <div class="card" data-tags="advanced">
+        <div class="card-header">
+          <div class="card-title">Coursera</div>
+          <div class="card-badge">名校课程</div>
+        </div>
+        <div class="card-description">
+          全球知名MOOC平台，提供斯坦福、Google等顶尖机构和公司的AI课程，包括吴恩达的机器学习专项课程。
+        </div>
+        <div class="card-meta">
+          <span class="language-tag">英文/中文</span>
+          <a href="https://www.coursera.org/" target="_blank" class="card-link">访问网站</a>
+        </div>
+      </div>
+    </div>
+
+    <!-- 动手实践 -->
+    <h2 class="section-title">🛠️ 动手实践</h2>
+    <div class="card-grid">
+      <div class="card" data-tags="free interactive">
+        <div class="card-header">
+          <div class="card-title">Hugging Face Learn</div>
+          <div class="card-badge">开源生态</div>
+        </div>
+        <div class="card-description">
+          提供关于语言模型、智能体等免费课程，可学习使用Transformers库，并有一键部署模型的Spaces功能。
+        </div>
+        <div class="card-meta">
+          <span class="language-tag">英文</span>
+          <a href="https://huggingface.co/learn" target="_blank" class="card-link">访问网站</a>
+        </div>
+      </div>
+
+      <div class="card" data-tags="free interactive chinese">
+        <div class="card-header">
+          <div class="card-title">飞桨AI Studio</div>
+          <div class="card-badge">百度出品</div>
+        </div>
+        <div class="card-description">
+          一站式AI学习与实训社区，提供免费GPU算力、在线编程环境和丰富课程，涵盖机器学习、深度学习到强化学习。
+        </div>
+        <div class="card-meta">
+          <span class="language-tag">中文</span>
+          <a href="https://aistudio.baidu.com/" target="_blank" class="card-link">访问网站</a>
+        </div>
+      </div>
+
+      <div class="card" data-tags="free interactive">
+        <div class="card-header">
+          <div class="card-title">Kaggle Learn</div>
+          <div class="card-badge">实战社区</div>
+        </div>
+        <div class="card-description">
+          机器学习和数据科学社区，提供短期微课程、真实数据集和竞赛，通过实践快速提升技能。
+        </div>
+        <div class="card-meta">
+          <span class="language-tag">英文</span>
+          <a href="https://www.kaggle.com/learn" target="_blank" class="card-link">访问网站</a>
+        </div>
+      </div>
+
+      <div class="card" data-tags="free interactive">
+        <div class="card-header">
+          <div class="card-title">Teachable Machine</div>
+          <div class="card-badge">无需代码</div>
+        </div>
+        <div class="card-description">
+          Google推出的工具，可训练简单的图像、声音或姿势识别模型，无需编程，适合快速体验机器学习概念。
+        </div>
+        <div class="card-meta">
+          <span class="language-tag">英文</span>
+          <a href="https://teachablemachine.withgoogle.com/" target="_blank" class="card-link">访问网站</a>
+        </div>
+      </div>
+    </div>
+
+    <!-- 研究与前沿 -->
+    <h2 class="section-title">🔬 研究与前沿</h2>
+    <div class="card-grid">
+      <div class="card" data-tags="advanced free">
+        <div class="card-header">
+          <div class="card-title">Papers with Code</div>
+          <div class="card-badge">论文+代码</div>
+        </div>
+        <div class="card-description">
+          汇集机器学习论文及其开源实现的网站，可按任务、数据集或模型查找最新研究进展和相关代码。
+        </div>
+        <div class="card-meta">
+          <span class="language-tag">英文</span>
+          <a href="https://paperswithcode.com/" target="_blank" class="card-link">访问网站</a>
+        </div>
+      </div>
+
+      <div class="card" data-tags="advanced free">
+        <div class="card-header">
+          <div class="card-title">arXiv.org</div>
+          <div class="card-badge">预印本</div>
+        </div>
+        <div class="card-description">
+          物理和计算机科学领域的预印本平台，AI研究者发布最新研究成果的主要场所之一，可获取最新论文。
+        </div>
+        <div class="card-meta">
+          <span class="language-tag">英文</span>
+          <a href="https://arxiv.org/" target="_blank" class="card-link">访问网站</a>
+        </div>
+      </div>
+
+      <div class="card" data-tags="advanced free">
+        <div class="card-header">
+          <div class="card-title">AI Alignment Forum</div>
+          <div class="card-badge">AI安全</div>
+        </div>
+        <div class="card-description">
+          专注于AI安全与对齐研究的讨论社区，经常发布关于AI安全、对齐和伦理的深度文章和讨论。
+        </div>
+        <div class="card-meta">
+          <span class="language-tag">英文</span>
+          <a href="https://www.alignmentforum.org/" target="_blank" class="card-link">访问网站</a>
+        </div>
+      </div>
+
+      <div class="card" data-tags="advanced">
+        <div class="card-header">
+          <div class="card-title">Lil'Log</div>
+          <div class="card-badge">深度博客</div>
+        </div>
+        <div class="card-description">
+          前OpenAI研究副总裁Lilian Weng的博客，长文深入讲解智能体、强化学习、大模型原理等前沿话题。
+        </div>
+        <div class="card-meta">
+          <span class="language-tag">英文</span>
+          <a href="https://lilianweng.github.io/" target="_blank" class="card-link">访问网站</a>
+        </div>
+      </div>
+    </div>
+
+    <!-- 中文特色资源 -->
+    <h2 class="section-title">🇨🇳 中文特色资源</h2>
+    <div class="card-grid">
+      <div class="card" data-tags="chinese free">
+        <div class="card-header">
+          <div class="card-title">ShowMeAI知识社区</div>
+          <div class="card-badge">资料库</div>
+        </div>
+        <div class="card-description">
+          人工智能领域的资料库和学习社区，提供结构化的学习路径、速查手册和中文教程资源。
+        </div>
+        <div class="card-meta">
+          <span class="language-tag">中文</span>
+          <a href="https://www.showmeai.tech/" target="_blank" class="card-link">访问网站</a>
+        </div>
+      </div>
+
+      <div class="card" data-tags="chinese free">
+        <div class="card-header">
+          <div class="card-title">Datawhale开源学习</div>
+          <div class="card-badge">开源社区</div>
+        </div>
+        <div class="card-description">
+          国内领先的AI开源学习组织，提供《ChatGPT食用指南》等通俗文档和系统的开源课程，学习氛围浓厚。
+        </div>
+        <div class="card-meta">
+          <span class="language-tag">中文</span>
+          <a href="https://github.com/datawhalechina" target="_blank" class="card-link">访问网站</a>
+        </div>
+      </div>
+
+      <div class="card" data-tags="chinese free">
+        <div class="card-header">
+          <div class="card-title">阿里云AI学习路线</div>
+          <div class="card-badge">学习+测试</div>
+        </div>
+        <div class="card-description">
+          阿里云推出的人工智能学习路线，提供学+测结合的体验，帮助用户系统化提升AI技能并获得认证。
+        </div>
+        <div class="card-meta">
+          <span class="language-tag">中文</span>
+          <a href="https://developer.aliyun.com/ai" target="_blank" class="card-link">访问网站</a>
+        </div>
+      </div>
+
+      <div class="card" data-tags="chinese">
+        <div class="card-header">
+          <div class="card-title">中国大学MOOC</div>
+          <div class="card-badge">大学课程</div>
+        </div>
+        <div class="card-description">
+          国内重点大学AI课程聚集地，提供大量中文AI课程，包括《机器学习》、《深度学习》等经典课程。
+        </div>
+        <div class="card-meta">
+          <span class="language-tag">中文</span>
+          <a href="https://www.icourse163.org/" target="_blank" class="card-link">访问网站</a>
+        </div>
+      </div>
+    </div>
+
+    <div class="tips">
+      <h3>💡 如何高效利用这些资源？</h3>
+      <ul>
+        <li><strong>先建立概念</strong>：如果你是初学者，从"入门通识"开始，先对AI有一个整体的认识。</li>
+        <li><strong>系统学习</strong>：选择一个"系统课程"平台（如DeepLearning.AI、fast.ai），跟着课程进度学习。</li>
+        <li><strong>动手实践</strong>：将所学知识立即应用到"动手实践"平台（如Kaggle、飞桨AI Studio）的项目中。</li>
+        <li><strong>保持前沿</strong>：定期浏览"研究与前沿"资源（如Papers with Code），了解最新技术动态。</li>
+        <li><strong>构建项目</strong>：最终目标是构建自己的AI项目，将不同资源学到的知识融合应用。</li>
+      </ul>
+    </div>
+  </main>
+
+  <footer>
+    <p>持续更新中 · 最后更新: <span id="last-updated"></span></p>
+    <p>© 2026 你的名字 · 收集整理</p>
+  </footer>
+
+  <script>
+    // 设置最后更新时间
+    document.getElementById('last-updated').textContent = new Date().toLocaleDateString('zh-CN');
+    
+    // 筛选功能
+    const filterButtons = document.querySelectorAll('.filter-btn');
+    const cards = document.querySelectorAll('.card');
+    
+    filterButtons.forEach(button => {
+      button.addEventListener('click', () => {
+        // 移除所有按钮的active类
+        filterButtons.forEach(btn => btn.classList.remove('active'));
+        // 给当前按钮添加active类
+        button.classList.add('active');
+        
+        const filterValue = button.getAttribute('data-filter');
+        
+        // 显示或隐藏卡片
+        cards.forEach(card => {
+          if (filterValue === 'all') {
+            card.style.display = 'flex';
+          } else {
+            const tags = card.getAttribute('data-tags') || '';
+            if (tags.includes(filterValue)) {
+              card.style.display = 'flex';
+            } else {
+              card.style.display = 'none';
+            }
+          }
+        });
+      });
+    });
+    
+    // 卡片点击效果（可选）
+    cards.forEach(card => {
+      card.addEventListener('click', (e) => {
+        // 如果点击的不是链接，则不做任何操作
+        if (!e.target.closest('a')) {
+          console.log('卡片被点击:', card.querySelector('.card-title').textContent);
+        }
+      });
+    });
+  </script>
+</body>
+</html>
